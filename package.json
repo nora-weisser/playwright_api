@@ -1,0 +1,23 @@
+{
+  "name": "playwright_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nora-weisser/playwright_api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nora-weisser/playwright_api/issues"
+  },
+  "homepage": "https://github.com/nora-weisser/playwright_api#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/node": "^22.14.1",
+    "typescript": "^5.8.3"
+  }
+}
