@@ -1,10 +1,19 @@
+import { APIRequestContext } from "@playwright/test";
+
 export class RequestHandler {
 
+    private request: APIRequestContext;
     private baseUrl: string | undefined;
-    private apiPath: string = ''
-    private queryParams: object = {}
-    private apiHeaders: object = {}
-    private apiBody: object = {}
+    private defaultBaseUrl: string;
+    private apiPath: string = '';
+    private queryParams: object = {};
+    private apiHeaders: object = {};
+    private apiBody: object = {};
+
+    constructor(request: APIRequestContext, apiBaseUrl: string) {
+        this.request = request;
+        this.defaultBaseUrl = apiBaseUrl;
+    }
 
 
     url(url: string) {
@@ -30,5 +39,13 @@ export class RequestHandler {
     body(body: object) {
         this.apiBody = body;
         return this;
+    }
+
+    private getUrl() {
+        const url = new URL(`${this.baseUrl ?? this.defaultBaseUrl}${this.apiPath}`);
+        for (const [key, value] of Object.values(this.queryParams)) {
+            url.searchParams.append(key, value);
+        }
+        return url.toString();
     }
 }
