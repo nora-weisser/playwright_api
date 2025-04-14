@@ -1,11 +1,8 @@
-import { test, expect } from '@playwright/test';
+import { test } from '../utils/fixtures';
 
-test('Auth', async ({ request }) => {
-  const authResponse = await request.post('https://restful-booker.herokuapp.com/auth', {
-    data: {
-      "username": "admin",
-      "password": "password123"
-    }
-  });
-  expect(authResponse.status()).toEqual(200);
+test('Auth', async ({ api }) => {
+  const authResponse = await api.path('/auth').body({
+    "username": "admin",
+    "password": "password123"
+  }).postRequest(200);
 });
